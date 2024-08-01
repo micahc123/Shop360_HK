@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import emailjs from 'emailjs-com';
 import './Form.css';
 
 function Form() {
@@ -11,6 +12,7 @@ function Form() {
     images: []
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -28,13 +30,46 @@ function Form() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your server
-    // For this example, we'll just log it to the console
-    console.log(formData);
-    alert('Form submitted successfully!');
-    navigate('/catalog');
+    setIsSubmitting(true);
+
+    try {
+      // Send email to the submitter
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          to_email: formData.email,
+          business_name: formData.businessName,
+          // Add other template variables as needed
+        },
+        'YOUR_USER_ID'
+      );
+
+      // Send email to yourself (admin)
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_ADMIN_TEMPLATE_ID',
+        {
+          from_email: formData.email,
+          business_name: formData.businessName,
+          business_type: formData.businessType,
+          description: formData.description,
+          // Note: EmailJS doesn't support file attachments in the free plan
+          // You might want to set up a file upload service separately
+        },
+        'YOUR_USER_ID'
+      );
+
+      alert('Form submitted successfully!');
+      navigate('/catalog');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,7 +130,9 @@ function Form() {
             accept="image/*"
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
       </form>
     </div>
   );
