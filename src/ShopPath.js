@@ -11,7 +11,7 @@ const PathGame = ({ path }) => {
   const popDownRef = useRef(null);
   const navigate = useNavigate();
 
-  const finalPageText = "You have reached the end of the path. We hope this experience gave you another perspective of the stores in Hong Kong. Thank you.";
+  const finalPageText = "All 360 panoramas of store viewed.";
 
   const handleMainMenu = () => {
     navigate('/');
@@ -134,7 +134,7 @@ const AnimatedFinalPage = ({ text, onMainMenu }) => {
         className="main-menu-button"
         onClick={onMainMenu}
       >
-        Back to Main Menu
+        Back to catalog
       </animated.button>
     </div>
   );
