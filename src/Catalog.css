@@ -1,86 +1,67 @@
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vqPQw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_Of2PQw.ttf) format('truetype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 body {
-  font-family: 'Roboto Mono', monospace;
-  background-color: #f0e68c;
+  font-family: 'Lato', sans-serif;
+  background-color: #e6f3ff;
   color: #000;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.game-header {
-  text-align: center;
+.catalog {
   padding: 20px;
-  background-color: #8b4513;
-  border-bottom: 5px solid #4a2409;
+  position: relative;
 }
 
-.game-header h1 {
+.catalog h1 {
   font-size: 40px;
-  color: #f0e68c;
-  text-shadow: 2px 2px #000;
+  color: #0077be;
+  text-align: left;
+  margin-left: 20px;
   margin-bottom: 20px;
 }
 
-.search-bar {
+.filters {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
+  padding-left: 20px;
 }
 
-.search-bar input {
+.filters input,
+.filters select {
   margin-right: 10px;
   padding: 10px;
-  font-size: 16px;
-  font-family: 'Roboto Mono', monospace;
-  border: 2px solid #8b4513;
-  background-color: #f0e68c;
+  border: 1px solid #0077be;
+  border-radius: 5px;
+  background-color: white;
   color: #000;
-  width: 300px;
+}
+
+.content-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .shops {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   gap: 20px;
-  padding: 20px;
-  background-color: #f0e68c;
 }
-.filters input,
-.filters select {
-  margin: 0 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.sh
 
 .shop {
-  background-color: #d2b48c;
-  border: 3px solid #8b4513;
+  background-color: #f0f8ff;
+  border: 2px solid #0077be;
   border-radius: 10px;
   padding: 20px;
-  width: 80%;
-  max-width: 600px;
+  width: calc(33.33% - 20px);
   text-align: left;
-  box-shadow: 5px 5px 0px #8b4513;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
 }
@@ -89,14 +70,14 @@ body {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border: 2px solid #8b4513;
+  border: 1px solid #0077be;
   margin-bottom: 10px;
 }
 
 .shop h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #8b4513;
+  color: #0077be;
 }
 
 .shop p {
@@ -105,18 +86,57 @@ body {
 }
 
 .shop button {
-  background-color: #8b4513 !important;
-  color: #f0e68c !important;
+  background-color: #0077be !important;
+  color: white !important;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Lato', sans-serif;
   transition: background-color 0.3s;
   align-self: flex-end;
   margin-top: 10px;
 }
 
 .shop button:hover {
-  background-color: #4a2409 !important;
+  background-color: #005c8f !important;
+}
+
+.info-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #0077be;
+}
+
+.popup {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 100;
+  animation: fadeIn 0.3s;
+  max-width: 250px;
+}
+
+.popup-content {
+  font-size: 0.9rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

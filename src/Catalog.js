@@ -12,6 +12,7 @@ function Catalog() {
   const [shops] = useState(shopsData);
   const [locationFilter, setLocationFilter] = useState('');
   const [companyTypeFilter, setCompanyTypeFilter] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
   const titleAnimation = useSpring({
@@ -45,12 +46,26 @@ function Catalog() {
     navigate('/');
   };
 
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const locations = [...new Set(shops.map(shop => shop.location))];
   const companyTypes = [...new Set(shops.map(shop => shop.companyType))];
 
   return (
     <div className="catalog">
       <animated.h1 style={titleAnimation}>Shop360 HK</animated.h1>
+      <div className="info-icon" onClick={togglePopup}>❓</div>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h3>About Shop360 HK</h3>
+            <p>Explore Hong Kong shops virtually. Search, filter, and discover new stores for your shopping trips!</p>
+          </div>
+          <span className="close-btn" onClick={togglePopup}>×</span>
+        </div>
+      )}
       {!selectedShop && (
         <div className="filters">
           <input 
