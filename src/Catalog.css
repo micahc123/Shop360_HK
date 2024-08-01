@@ -141,3 +141,14 @@ body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+.shop360-title {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: text-decoration 0.3s ease;
+}
+
+.shop360-title:hover,
+.shop360-title:focus {
+  text-decoration: underline;
+}

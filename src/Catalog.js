@@ -20,6 +20,8 @@ function Catalog() {
     to: { transform: 'translateY(0)', opacity: 1 },
     config: { duration: 1000 },
   });
+  
+
 
   const shopAnimation = useSpring({
     from: { transform: 'translateY(100%)', opacity: 0 },
@@ -40,6 +42,9 @@ function Catalog() {
 
   const handleBack = () => {
     setSelectedShop(null);
+    setSearchTerm('');
+    setLocationFilter('');
+    setCompanyTypeFilter('');
   };
 
   const handleMainMenu = () => {
@@ -55,13 +60,22 @@ function Catalog() {
 
   return (
     <div className="catalog">
-      <animated.h1 style={titleAnimation}>Shop360 HK</animated.h1>
+    <animated.h1 style={titleAnimation}>
+      <span 
+        className="shop360-title" 
+        onClick={handleBack}
+        tabIndex={0}
+        role="button"
+      >
+        Shop360 HK
+      </span>
+    </animated.h1>
       <div className="info-icon" onClick={togglePopup}>❓</div>
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
-            <h3>About Shop360 HK</h3>
-            <p>Explore Hong Kong shops virtually. Search, filter, and discover new stores for your shopping trips!</p>
+            <h2>About Shop360 HK</h2>
+            <p>Shop360 HK is a virtual shop viewing platform that allows you to explore various shops in Hong Kong. You can search for shops, filter by location and company type, and view detailed information about each shop.</p>
           </div>
           <span className="close-btn" onClick={togglePopup}>×</span>
         </div>
