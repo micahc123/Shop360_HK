@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Shop from './Shop';
 import ShopPath from './ShopPath';
 import './Catalog.css';
@@ -20,8 +20,6 @@ function Catalog() {
     to: { transform: 'translateY(0)', opacity: 1 },
     config: { duration: 1000 },
   });
-  
-
 
   const shopAnimation = useSpring({
     from: { transform: 'translateY(100%)', opacity: 0 },
@@ -60,17 +58,20 @@ function Catalog() {
 
   return (
     <div className="catalog">
-    <animated.h1 style={titleAnimation}>
-      <span 
-        className="shop360-title" 
-        onClick={handleBack}
-        tabIndex={0}
-        role="button"
-      >
-        Shop360 HK
-      </span>
-    </animated.h1>
-      <div className="info-icon" onClick={togglePopup}>❓</div>
+  <animated.h1 style={titleAnimation}>
+    <span 
+      className="shop360-title" 
+      onClick={handleBack}
+      tabIndex={0}
+      role="button"
+    >
+      Shop360 HK
+    </span>
+  </animated.h1>
+  <div className="top-right-icons">
+    <Link to="/add-business" className="add-business-icon">+</Link>
+    <div className="info-icon" onClick={togglePopup}>?</div>
+  </div>
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
@@ -129,6 +130,7 @@ function Catalog() {
           </div>
         )}
       </div>
+      <Link to="/add-business" className="add-business-icon">+</Link>
     </div>
   );
 }
