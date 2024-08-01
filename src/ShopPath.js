@@ -2,12 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, useTrail, animated, useSpringRef, useChain } from '@react-spring/web';
 import { useNavigate } from 'react-router-dom';
 import PanoramaViewer from './PanoramaViewer';
-import './PathGame.css';
+import './ShopPath.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import panorama1 from './images/path1_view1.jpg';
-import panorama2 from './images/path1_view2.jpg';
-import panorama3 from './images/path1_view3.jpg';
-import panorama4 from './images/path1_view4.jpg';
 
 const PathGame = ({ path }) => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -15,43 +11,36 @@ const PathGame = ({ path }) => {
   const popDownRef = useRef(null);
   const navigate = useNavigate();
 
-  const pageDetails = [
-    { title: "School", header: "School View", text: "Drag and click around to learn more about my school life" },
-    { title: "Home", header: "Home View", text: "Drag and click around to learn more about my home life" },
-    { title: "College Admissions Day", header: "CAD View", text: "Drag and click around to open my college letters" },
-    { title: "Work", header: "Work View", text: "Drag and click around to learn more about what I do now" }
-  ];
-
-  const finalPageText = "You have reached the end of the path. We hope this experience gave you another perspective of someone else's life. We truly believe that understanding others' experiences can help you in choosing your career path and making a difference in the world. Thank you.";
+  const finalPageText = "You have reached the end of the path. We hope this experience gave you another perspective of the stores in Hong Kong. Thank you.";
 
   const handleMainMenu = () => {
     navigate('/');
   };
 
-  const panoramaMap = {
-    panorama1: panorama1,
-    panorama2: panorama2,
-    panorama3: panorama3,
-    panorama4: panorama4
-  };
-
-  const pages = [
+  const pages = path.panoramaImages.length > 0 ? [
     ...path.panoramaImages.map((image, index) => ({
-      title: pageDetails[index]?.title || `View ${index + 1}`,
+      title: `Store Part ${index + 1}`,
       content: (
         <PanoramaViewer
-        imageUrl={panoramaMap[image.key]}
-        interactivePoints={image.interactivePoints || []}
+          imageUrl={image.url}
+          interactivePoints={image.interactivePoints || []}
         />
       ),
-      header: pageDetails[index]?.header || `View ${index + 1}`,
-      text: pageDetails[index]?.text || `This is view ${index + 1} of the path.`
+      header: `Store Part ${index + 1}`,
+      text: `This is part ${index + 1} of the store.`
     })),
     {
       title: 'End of Path',
       content: <AnimatedFinalPage text={finalPageText} onMainMenu={handleMainMenu} />,
       header: 'End of Path',
       text: 'You have reached the end of the path'
+    }
+  ] : [
+    {
+      title: 'No Images',
+      content: <div>This company doesn't have any images currently.</div>,
+      header: 'No Images',
+      text: 'This company doesn\'t have any images currently.'
     }
   ];
 

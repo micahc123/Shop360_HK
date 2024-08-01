@@ -34,10 +34,22 @@
   max-width: 100px;
   margin-right: 20px;
 }
+.shop-button {
+  margin-top: 200px;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
 
-.btn-lg {
-  margin-top: 200px !important;
-  padding: 5px 10px;
-  font-size: 30px !important;
-  margin-left: 0; 
+.shop-button:hover {
+  background-color: #0056b3;
+}
+
+.shop-button:active {
+  background-color: #004085;
 }

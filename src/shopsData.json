@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Shop A",
+    "description": "Shop A is a popular electronics store known for its wide range of gadgets and excellent customer service.",
+    "location": "Central",
+    "companyType": "Electronics",
+    "address": "123 Main Street, Hong Kong",
+    "panoramaImages": [
+      {
+        "url": "/images/shopA_view1.jpg",
+        "interactivePoints": [
+          { "id": 1, "x": 30.85, "y": -56.22, "z": 494.83, "text": "Welcome to Shop A! We have the latest gadgets available here.", "buttonText": "Welcome" },
+          { "id": 2, "x": 467.45, "y": 151.66, "z": 89.66, "text": "Check out our new arrivals section for the latest products.", "buttonText": "New Arrivals" },
+          { "id": 3, "x": 329.45, "y": -25.60, "z": -370.42, "text": "Our customer service desk is here to help you with any queries.", "buttonText": "Customer Service" }
+        ]
+      },
+      {
+        "url": "/images/shopA_view2.jpg",
+        "interactivePoints": [
+          { "id": 4, "x": -38.56, "y": -275, "z": 414, "text": "Explore our wide range of smartphones and accessories.", "buttonText": "Smartphones" },
+          { "id": 5, "x": -454.56, "y": -126, "z": -163, "text": "We offer the best deals on laptops and computers.", "buttonText": "Laptops" },
+          { "id": 6, "x": 259, "y": -256, "z": -340.71, "text": "Don't miss our special discounts on home appliances.", "buttonText": "Home Appliances" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Shop B",
+    "description": "Shop B is a cozy bookstore with a vast collection of books from various genres.",
+    "location": "Wan Chai",
+    "companyType": "Bookstore",
+    "address": "456 Market Street, Hong Kong",
+    "panoramaImages": [
+      {
+        "url": "/images/shopB_view1.jpg",
+        "interactivePoints": [
+          { "id": 7, "x": 78.75, "y": -263, "z": 419, "text": "Welcome to Shop B! Find your next great read here.", "buttonText": "Welcome" },
+          { "id": 8, "x": -64.56, "y": -267, "z": -416.7, "text": "Check out our bestsellers section for the most popular books.", "buttonText": "Bestsellers" },
+          { "id": 9, "x": -70, "y": -263, "z": 419, "text": "Our reading corner is the perfect place to relax and enjoy a book.", "buttonText": "Reading Corner" }
+        ]
+      },
+      {
+        "url": "/images/shopB_view2.jpg",
+        "interactivePoints": [
+          { "id": 10, "x": -443, "y": -60, "z": -220.88, "text": "Explore our collection of rare and antique books.", "buttonText": "Rare Books" },
+          { "id": 11, "x": 264, "y": -95, "z": -412, "text": "Join our book club for exciting discussions and events.", "buttonText": "Book Club" },
+          { "id": 12, "x": 217.55, "y": -14, "z": 448.83, "text": "We offer personalized book recommendations based on your interests.", "buttonText": "Recommendations" }
+        ]
+      }
+    ]
+  }
+]
