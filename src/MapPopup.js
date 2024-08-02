@@ -17,7 +17,7 @@ function MapPopup({ location, address }) {
     'Wan Chai': [22.2783, 114.1747],
   };
 
-  const position = coordinates[location] || [22.3193, 114.1694]; // Default to Hong Kong
+  const position = coordinates[location] || [22.3193, 114.1694];
 
   return (
     <div className="map-popup">
