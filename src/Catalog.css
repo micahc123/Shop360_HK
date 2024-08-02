@@ -47,11 +47,13 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.shops {
+.shops-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: column;
   gap: 20px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
 }
 
 .shop {
@@ -59,11 +61,13 @@ body {
   border: 2px solid #0077be;
   border-radius: 10px;
   padding: 20px;
-  width: calc(33.33% - 20px);
+  width: calc(100% - 40px);
   text-align: left;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  position: relative;
+  min-height: 300px;
 }
 
 .shop-image {
@@ -94,13 +98,15 @@ body {
   cursor: pointer;
   font-family: 'Lato', sans-serif;
   transition: background-color 0.3s;
-  align-self: flex-end;
-  margin-top: 10px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 
 .shop button:hover {
   background-color: #005c8f !important;
 }
+
 .info-icon {
   font-size: 1.7rem;
   cursor: pointer;
@@ -175,4 +181,42 @@ body {
 
 .add-business-icon:hover {
   background-color: #005c8f;
+}
+
+.map-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.map-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+}
+
+.close-map {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.location-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }

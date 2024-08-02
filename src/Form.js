@@ -37,29 +37,25 @@ function Form() {
     try {
       // Send email to the submitter
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_gpbuaed',
+        'template_ej9nncq',
         {
           to_email: formData.email,
           business_name: formData.businessName,
-          // Add other template variables as needed
         },
-        'YOUR_USER_ID'
+        't4Lueusda5hVXawwu'
       );
 
-      // Send email to yourself (admin)
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_ADMIN_TEMPLATE_ID',
+        'service_gpbuaed',
+        'template_ej9nncq',
         {
           from_email: formData.email,
           business_name: formData.businessName,
           business_type: formData.businessType,
           description: formData.description,
-          // Note: EmailJS doesn't support file attachments in the free plan
-          // You might want to set up a file upload service separately
         },
-        'YOUR_USER_ID'
+        't4Lueusda5hVXawwu'
       );
 
       alert('Form submitted successfully!');

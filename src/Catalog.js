@@ -3,6 +3,7 @@ import { useSpring, animated } from '@react-spring/web';
 import { useNavigate, Link } from 'react-router-dom';
 import Shop from './Shop';
 import ShopPath from './ShopPath';
+import MapPopup from './MapPopup';
 import './Catalog.css';
 import shopsData from './shopsData.json';
 
@@ -13,6 +14,9 @@ function Catalog() {
   const [locationFilter, setLocationFilter] = useState('');
   const [companyTypeFilter, setCompanyTypeFilter] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState('');
   const navigate = useNavigate();
 
   const titleAnimation = useSpring({
@@ -22,8 +26,8 @@ function Catalog() {
   });
 
   const shopAnimation = useSpring({
-    from: { transform: 'translateY(100%)', opacity: 0 },
-    to: { transform: 'translateY(0)', opacity: 1 },
+    from: { transform: 'translateX(-100%)', opacity: 0 },
+    to: { transform: 'translateX(0)', opacity: 1 },
     config: { duration: 1000 },
   });
 
@@ -53,25 +57,37 @@ function Catalog() {
     setShowPopup(!showPopup);
   };
 
+  const handleLocationClick = (location, address) => {
+    setSelectedLocation(location);
+    setSelectedAddress(address);
+    setShowMap(true);
+  };
+
+  const closeMap = () => {
+    setShowMap(false);
+    setSelectedLocation(null);
+    setSelectedAddress('');
+  };
+
   const locations = [...new Set(shops.map(shop => shop.location))];
   const companyTypes = [...new Set(shops.map(shop => shop.companyType))];
 
   return (
     <div className="catalog">
-  <animated.h1 style={titleAnimation}>
-    <span 
-      className="shop360-title" 
-      onClick={handleBack}
-      tabIndex={0}
-      role="button"
-    >
-      Shop360 HK
-    </span>
-  </animated.h1>
-  <div className="top-right-icons">
-    <Link to="/add-business" className="add-business-icon">+</Link>
-    <div className="info-icon" onClick={togglePopup}>?</div>
-  </div>
+      <animated.h1 style={titleAnimation}>
+        <span 
+          className="shop360-title" 
+          onClick={handleBack}
+          tabIndex={0}
+          role="button"
+        >
+          Shop360 HK
+        </span>
+      </animated.h1>
+      <div className="top-right-icons">
+        <Link to="/add-business" className="add-business-icon">+</Link>
+        <div className="info-icon" onClick={togglePopup}>?</div>
+      </div>
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
@@ -113,24 +129,32 @@ function Catalog() {
         {selectedShop ? (
           <ShopPath path={selectedShop} onBack={handleBack} onMainMenu={handleMainMenu} />
         ) : (
-          <div className="shops">
+          <div className="shops-list">
             {filteredShops.map((shop, index) => (
-              <Shop 
-                key={index} 
-                name={shop.name} 
-                image={shop.panoramaImages[0].url} 
-                description={shop.description} 
-                location={shop.location}
-                companyType={shop.companyType}
-                address={shop.address}
-                animation={shopAnimation}
-                onClick={() => handleShopClick(shop)}
-              />
+              <animated.div style={shopAnimation} key={index}>
+                <Shop 
+                  name={shop.name} 
+                  image={shop.panoramaImages[0].url} 
+                  description={shop.description} 
+                  location={shop.location}
+                  companyType={shop.companyType}
+                  address={shop.address}
+                  onClick={() => handleShopClick(shop)}
+                  onLocationClick={() => handleLocationClick(shop.location, shop.address)}
+                />
+              </animated.div>
             ))}
           </div>
         )}
       </div>
-      <Link to="/add-business" className="add-business-icon">+</Link>
+      {showMap && (
+        <div className="map-overlay">
+          <div className="map-container">
+            <button className="close-map" onClick={closeMap}>×</button>
+            <MapPopup location={selectedLocation} address={selectedAddress} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
