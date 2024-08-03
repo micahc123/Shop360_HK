@@ -198,6 +198,20 @@ const PanoramaViewer = ({ imageUrl, interactivePoints }) => {
 
     onPointerDownLon.current = lonRef.current;
     onPointerDownLat.current = latRef.current;
+
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / containerRef.current.clientWidth) * 2 - 1;
+    mouse.y = -(event.clientY / containerRef.current.clientHeight) * 2 + 1;
+
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, cameraRef.current);
+
+    const intersects = raycaster.intersectObjects(sceneRef.current.children);
+
+    if (intersects.length > 0) {
+      const intersectionPoint = intersects[0].point;
+      console.log('Clicked coordinates:', intersectionPoint);
+    }
   };
 
   const onPointerMove = (event) => {
@@ -232,12 +246,10 @@ const PanoramaViewer = ({ imageUrl, interactivePoints }) => {
         }
       ]);
 
-      // Check if the button is an acceptance letter
       if (clickedButton.buttonText.toLowerCase().includes('acceptance') ||
           clickedButton.text.toLowerCase().includes('admitted') ||
           clickedButton.text.toLowerCase().includes('congratulations')) {
         setShowConfetti(true);
-        // Optionally, set a timer to stop the confetti after a few seconds
         setTimeout(() => setShowConfetti(false), 5000);
       }
     }
