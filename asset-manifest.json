@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.a082531d.css",
-    "main.js": "/static/js/main.c030bb2c.js",
-    "index.html": "/index.html",
-    "main.a082531d.css.map": "/static/css/main.a082531d.css.map",
-    "main.c030bb2c.js.map": "/static/js/main.c030bb2c.js.map"
+    "main.css": "/Shop360_HK/static/css/main.a082531d.css",
+    "main.js": "/Shop360_HK/static/js/main.c030bb2c.js",
+    "index.html": "/Shop360_HK/index.html",
+    "main.a082531d.css.map": "/Shop360_HK/static/css/main.a082531d.css.map",
+    "main.c030bb2c.js.map": "/Shop360_HK/static/js/main.c030bb2c.js.map"
   },
   "entrypoints": [
     "static/css/main.a082531d.css",
